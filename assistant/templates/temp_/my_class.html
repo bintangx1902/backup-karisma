@@ -38,9 +38,9 @@
     <div class="form-group row">
         <div class="col-12 col-md-3 col-lg-3">Langsung Generate QRCode</div>
         <div class="col-12 col-md-9 col-lg-9">
-            <button type="button" class="btn btn-primary col" data-toggle="modal" data-target="#staticBackdropGenerate">
+            <a type="button" class="btn btn-primary col" href="{% url 'assist:generate-qr' view.kwargs.link %}">
                 Generate QR Code
-            </button>
+            </a>
         </div>
     </div>
 
@@ -57,20 +57,6 @@
             <button type="button" class="btn btn-primary col" data-toggle="modal"
                     data-target="#staticBackdropUpdate">Ubah Detail Kelas
             </button>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <div class="col-3 col-sm-3">Rekap Nilai Mahasiswa</div>
-        <div class="col-12 col-md-9 col-lg-9">
-            <a href="{% url 'assist:score' view.kwargs.link %}" class="btn btn-primary col">Lakukan Rekap</a>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <div class="col-3 col-sm-3">Download Rekap Nilai Mahasiswa</div>
-        <div class="col-12 col-md-9 col-lg-9">
-            <a href="{% url 'assist:view-score' view.kwargs.link %}" class="btn btn-primary col">Download Nilai</a>
         </div>
     </div>
 </div>

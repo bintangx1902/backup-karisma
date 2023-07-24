@@ -228,22 +228,11 @@ class CreateClass(CreateView):
     success_url = reverse_lazy('assist:my-class-list')
 
     def form_valid(self, form):
-        start = self.request.POST.get('start')
-        end = self.request.POST.get('end')
-        class_ = self.request.POST.get('class')
-        gen = self.request.POST.get('gen')
-        course = self.request.POST.get('course')
-
-        if not class_ or not start or not end or not course:
-            messages.warning(self.request, 'Mohon lengkapi data dengan benar')
-            return redirect(reverse('assist:create-class'))
-        else:
-            class_ = class_list[int(class_) - 1]
-            course = course_list[int(course) - 1]
-
-        name, link = set_class_name(start, end, class_, gen, course)
-
+        # gen = self.request.POST.get('gen')
+        gen = form.cleaned_data.get('name')
+        name, link = set_class_name(gen)
         code = slug_generator(10)
+
         code_list = [c.unique_code for c in ClassName.objects.all()]
         code = check_slug(code, code_list, 10)
 
@@ -260,11 +249,11 @@ class CreateClass(CreateView):
         context['course_list'] = course_list
         return context
 
-    @method_decorator(login_required(login_url=settings.LOGIN_URL))
-    @method_decorator(
-        user_passes_test(lambda u: u.is_staff and (u.user.is_controller if hasattr(u, 'user') else False), '/'))
-    def dispatch(self, request, *args, **kwargs):
-        return super(CreateClass, self).dispatch(request, *args, **kwargs)
+    # @method_decorator(login_required(login_url=settings.LOGIN_URL))
+    # @method_decorator(
+    #     user_passes_test(lambda u: u.is_staff and (u.user.is_controller if hasattr(u, 'user') else False), '/'))
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super(CreateClass, self).dispatch(request, *args, **kwargs)
 
 
 @login_required(login_url=settings.LOGIN_URL)

@@ -2,10 +2,7 @@
 
 {% block content %}
 <div class="container my-5">
-    <form action="{% url 'assist:generate-qr' view.kwargs.link %}" method="post" class="mb-3">
-        {% csrf_token %}
-        <button class="btn btn-primary">Generate QR</button>
-    </form>
+    <a href="{% url 'assist:generate-qr' view.kwargs.link %}" class="btn btn-primary mb-3">Generate QR</a>
     <table class="table">
         <thead class="thead-dark">
             <tr>

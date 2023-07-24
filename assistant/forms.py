@@ -35,8 +35,8 @@ class UserChangeDataForms(ModelForm):
 class CreateClassForms(ModelForm):
     class Meta:
         model = ClassName
-        fields = ["lecture_name"]
+        fields = ["name"]
 
         widgets = {
-            'lecture_name': forms.TextInput(attrs={'class': 'form-control'})
+            'name': forms.TextInput(attrs={'class': 'form-control'})
         }

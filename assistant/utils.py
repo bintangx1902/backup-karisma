@@ -22,15 +22,13 @@ def check_slug(link: str, link_list: list, n):
             return link
 
 
-def set_class_name(start, end, class_, gen, course):
+def set_class_name(gen):
     punc = r'[' + string.punctuation + ']'
-    name = f"{gen} {class_} {course} Jam"
+    name = f"{gen}"
     name = re.sub(punc, '', name)
-    class_name = f"{name} {start}-{end}"
+    class_name = f"{name}"
 
-    start = re.sub(punc, '', start)
-    end = re.sub(punc, '', end)
-    class_link = f"{name} {start}-{end}".replace(' ', '-')
+    class_link = f"{name}".replace(' ', '-')
 
     return class_name, class_link
 
