@@ -1,5 +1,4 @@
 import datetime
-
 import jwt
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -41,8 +40,6 @@ class TakePresenceEndPoint(APIView):
         user = user[0]
         get_qr = get_qr[0]
         now = timezone.now()
-        if now > get_qr.valid_until:
-            return Response(data={'text': "Expired QR"}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
         """ find recap """
         recap = Recap.objects.filter(qr=get_qr, user=user)
@@ -51,12 +48,14 @@ class TakePresenceEndPoint(APIView):
 
         """ find if user in the class or not """
         if user not in get_qr.class_name.students.all():
-            return Response(data={'text': 'Kamu Bukan Mahasiswa kelas ini !'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response(data={'text': 'Kamu Bukan Anggota Peleton ini !'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
         instance = Recap(
             qr=get_qr,
             user=user
         )
+        if now > get_qr.valid_until:
+            instance.presence = 'Telat'
         instance.save()
 
         return Response(data={'text': 'Berhasil di Recap'}, status=status.HTTP_202_ACCEPTED)

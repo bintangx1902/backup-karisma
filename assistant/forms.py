@@ -22,7 +22,7 @@ class GenerateQRCodeForms(ModelForm):
         fields = ['valid_until']
 
         widgets = {
-            'valid_until': DateTimeInput(attrs={'type': 'datetime-local'})
+            'valid_until': DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'})
         }
 
 

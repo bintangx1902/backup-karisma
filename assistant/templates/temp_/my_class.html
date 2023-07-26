@@ -5,23 +5,23 @@
     <div class="form-group row">
         <div class="col-lg-3 col-sm-3">Nama Kelas</div>
         <div class="col-lg-9 col-sm-9">
-            <input type="text" name="name" id="name" value="{{ class.name }}" class="form-control disabled">
+            <input type="text" name="name" id="name" value="{{ class.name }}" class="form-control bg-transparent" readonly >
         </div>
     </div>
     <div class="form-group row">
         <div class="col-lg-3 col-sm-3">Kode Kelas</div>
         <div class="col-lg-9 col-sm-9">
-            <input type="text" name="code" id="code" class="form-control disabled" value="{{ class.unique_code }}">
+            <input type="text" name="code" id="code" class="form-control bg-transparent" value="{{ class.unique_code }}" readonly>
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-lg-3 col-sm-3">Penanggung Jawab Kelas</div>
+        <div class="col-lg-3 col-sm-3">Penanggung Jawab Cofass</div>
         <div class="col-lg-9 col-sm-9">
-            <input type="text" name="pj" id="pj" class="form-control" value="{{ class.creator }}">
+            <input type="text" name="pj" id="pj" class="form-control bg-transparent" value="{{ class.creator }}" readonly>
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-lg-3 col-sm-3">Assisten Kelas</div>
+        <div class="col-lg-3 col-sm-3">Cofass Peleton</div>
         <div class="col-lg-9 col-sm-9">
             <select name="assist" id="assist" class="custom-select" multiple>
                 {% if class.pr.all %}
@@ -29,7 +29,7 @@
                 <option>{{ pr }}</option>
                 {% endfor %}
                 {% else %}
-                <option>No Assistant Registered Here</option>
+                <option>No Cofass Registered Here yet</option>
                 {% endif %}
             </select>
         </div>
@@ -52,10 +52,10 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-3 col-sm-3">Ubah Detail Kelas</div>
+        <div class="col-3 col-sm-3">Ubah Detail Peleton</div>
         <div class="col-12 col-md-9 col-lg-9">
             <button type="button" class="btn btn-primary col" data-toggle="modal"
-                    data-target="#staticBackdropUpdate">Ubah Detail Kelas
+                    data-target="#staticBackdropUpdate">Ubah Detail Peleton
             </button>
         </div>
     </div>

@@ -206,10 +206,12 @@ class MyClass(DetailView):
     def get_context_data(self, **kwargs):
         context = super(MyClass, self).get_context_data(**kwargs)
         qr_active = GenerateQRCode.objects.filter(class_name__link=self.kwargs['link'])
+        form = CreateClassForms()
 
         context['class_list'] = class_list
         context['course_list'] = course_list
         context['links'] = qr_active if qr_active.exists() else None
+        context['form'] = form
         return context
 
     @method_decorator(login_required(login_url=settings.LOGIN_URL))
@@ -261,28 +263,15 @@ class CreateClass(CreateView):
 def update_class_detail(request, link):
     form_class = CreateClassForms
     if request.method == 'POST':
-        lecture = request.POST.get('lecture')
-        start = request.POST.get('start')
-        class_ = request.POST.get('class')
-        end = request.POST.get('end')
-        gen = request.POST.get('gen')
-        course = request.POST.get('course')
+        name = request.POST.get('name')
 
         class_name = ClassName.objects.get(link=link)
         form = form_class(request.POST or None, instance=class_name)
 
-        if not start or not class_ or not course or not end:
-            messages.warning(request, 'Mohon lengkapi data dengan benar')
-            return redirect(reverse('assist:my-class', args=[link]))
-        else:
-            class_ = class_list[int(class_) - 1]
-            course = course_list[int(course) - 1]
-
-        name, link = set_class_name(start, end, class_, gen, course)
+        name, link_ = set_class_name(name)
 
         form.instance.name = name
-        form.instance.link = link
-        form.instance.lecture_name = lecture
+        form.instance.link = link_
         form.save()
     return redirect(reverse('assist:my-class', kwargs={'link': link}))
 

@@ -80,11 +80,13 @@ class DataComplement(View):
         last_name = self.request.POST.get('l_name')
         email = self.request.POST.get('email')
         nim = self.request.POST.get('nim')
-        phone = self.request.POST.get('phone')
+        phone: str = self.request.POST.get('phone')
 
         get_data = self.model.objects.filter(user=self.request.user)
         nim_list = [x.nim for x in self.model.objects.all()]
         msg, check = check_nim(nim_list, nim)
+
+        phone = phone[1:] if phone.startswith('0') else phone
 
         """ check nim first """
         if hasattr(self.request.user, 'user'):
