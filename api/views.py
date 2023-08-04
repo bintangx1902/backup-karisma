@@ -44,7 +44,7 @@ class TakePresenceEndPoint(APIView):
         """ find recap """
         recap = Recap.objects.filter(qr=get_qr, user=user)
         if recap:
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE, data={'text': 'Anda Sudah Absen'})
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE, data={'text': 'Data Anda sudah Di Catat'})
 
         """ find if user in the class or not """
         if user not in get_qr.class_name.students.all():
@@ -56,6 +56,8 @@ class TakePresenceEndPoint(APIView):
         )
         if now > get_qr.valid_until:
             instance.presence = 'Telat'
+            instance.save()
+            return Response(data={'text': 'Data berhasil di rekap \nKamu Telat'}, status=status.HTTP_202_ACCEPTED)
         instance.save()
 
         return Response(data={'text': 'Berhasil di Recap'}, status=status.HTTP_202_ACCEPTED)
