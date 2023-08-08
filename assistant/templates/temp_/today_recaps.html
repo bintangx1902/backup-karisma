@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script>
+    let n = 1
+</script>
+
+<div class="container my-5">
+    <form action="{% url 'assist:today-present' %}" method="post" class="mb-3">
+        {% csrf_token %}
+        <button class="btn btn-primary">Download Recaps</button>
+    </form>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nim</th>
+                <th scope="col">Name</th>
+                <th scope="col">Presence</th>
+                <th scope="col">Peleton</th>
+                <th scope="col">time stamp</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instance in qr %}
+        <!-- inner loop -->
+        {% for data in instance.qr_c.all %}
+            <tr>
+                <th scope="row">
+                    <script>
+                        document.write(n)
+                        n++
+                    </script>
+                </th>
+                <td>{{ data.user.user.nim }}</td>
+                <td>{{ data.user.first_name }} {{ data.user.last_name }}</td>
+                <td>{{ data.presence }}</td>
+                <td>{{ instance.class_name }}</td>
+                <td>{{ data.stamp }}</td>
+            </tr>
+        {% endfor %}
+        <!-- end inner loop -->
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

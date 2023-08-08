@@ -719,3 +719,32 @@ class DownloadScore(View):
         user_passes_test(lambda u: u.is_staff and (u.user.is_controller if hasattr(u, 'user') else False), '/'))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+
+class DownloadTodayPresent(View):
+    def get(self, *args, **kwargs):
+        today = datetime.date.today()
+        qr = GenerateQRCode.objects.filter(valid_until__date=today)
+        context = {'qr': qr, 'n': 1}
+        return render(self.request, templates('today_recaps'), context)
+
+    def post(self, *args, **kwargs):
+        today = datetime.date.today()
+        response = HttpResponse('')
+        generated_qr = GenerateQRCode.objects.filter(valid_until__date=today)
+        response['Content-Disposition'] = f'attachment; filename=rekap_presensi_{generated_qr.first().stamp()}.csv'
+        writer = csv.writer(response)
+        writer.writerow(['no', 'nim', 'nama', 'kehadiran', 'kelas', 'time_stamp'])
+        n = 1
+        for model in generated_qr:
+            for recap in model.qr_c.all():
+                writer.writerow([n, recap.user.user.nim, f"{recap.user.first_name} {recap.user.last_name}",
+                                 f"{recap.presence}", recap.qr.class_name, recap.stamp()])
+                n += 1
+        return response
+
+    @method_decorator(login_required(login_url=settings.LOGIN_URL))
+    @method_decorator(
+        user_passes_test(lambda u: u.is_staff and (u.user.is_controller if hasattr(u, 'user') else False), '/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
