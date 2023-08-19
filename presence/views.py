@@ -17,6 +17,10 @@ def templates(temp: str):
     return f'presence/{temp}.html'
 
 
+def landing(request):
+    return render(request, templates('main_landing'))
+
+
 class LandingView(View):
     def get(self, *args, **kwargs):
         return render(self.request, templates('mhs_landing'))
