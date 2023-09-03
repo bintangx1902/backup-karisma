@@ -15,13 +15,13 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-lg-3 col-sm-3">Penanggung Jawab Cofass</div>
+        <div class="col-lg-3 col-sm-3">Penanggung Jawab Mentorship</div>
         <div class="col-lg-9 col-sm-9">
             <input type="text" name="pj" id="pj" class="form-control bg-transparent" value="{{ class.creator }}" readonly>
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-lg-3 col-sm-3">Cofass Peleton</div>
+        <div class="col-lg-3 col-sm-3">Mentorship Pleton</div>
         <div class="col-lg-9 col-sm-9">
             <select name="assist" id="assist" class="custom-select" multiple>
                 {% if class.pr.all %}
@@ -29,7 +29,7 @@
                 <option>{{ pr }}</option>
                 {% endfor %}
                 {% else %}
-                <option>No Cofass Registered Here yet</option>
+                <option>No Mentorship Registered Here yet</option>
                 {% endif %}
             </select>
         </div>
@@ -52,10 +52,10 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-3 col-sm-3">Ubah Detail Peleton</div>
+        <div class="col-3 col-sm-3">Ubah Detail Pleton</div>
         <div class="col-12 col-md-9 col-lg-9">
             <button type="button" class="btn btn-primary col" data-toggle="modal"
-                    data-target="#staticBackdropUpdate">Ubah Detail Peleton
+                    data-target="#staticBackdropUpdate">Ubah Detail Pleton
             </button>
         </div>
     </div>
