@@ -9,6 +9,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files import File
 from django.db import models
 
+from ckeditor.fields import RichTextField
+
 
 class UserData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user', related_query_name='user')
@@ -91,3 +93,13 @@ class Recap(models.Model):
 
     def stamp(self):
         return self.time_stamp.strftime('%a %H:%M  %d/%m/%y')
+
+
+class BoardingHouse(models.Model):
+    name = models.CharField("Nama Kost : ", max_length=255)
+    spec = RichTextField("Spesifikasi Kost")
+    link = models.CharField("Link Google Maps : ", max_length=255)
+    slug = models.SlugField(max_length=255)
+
+    def __str__(self):
+        return f"{self.name} - Link G-Maps : {self.link}"

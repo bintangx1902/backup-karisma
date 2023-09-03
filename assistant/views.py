@@ -748,3 +748,37 @@ class DownloadTodayPresent(View):
         user_passes_test(lambda u: u.is_staff and (u.user.is_controller if hasattr(u, 'user') else False), '/'))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+
+class CreateBoardingHouse(CreateView):
+    model = BoardingHouse
+    template_name = templates('boarding')
+    form_class = BoardingHouseForms
+    success_url = reverse_lazy('assist:boarding-list')
+
+    def form_valid(self, form):
+        link = form.cleaned_data.get('name')
+        link = link.replace(' ', '-')
+
+        form.instance.slug = link
+        return super(CreateBoardingHouse, self).form_valid(form)
+
+    @method_decorator(login_required(login_url='/accounts/login/'))
+    @method_decorator(
+        user_passes_test(lambda u: u.is_staff and (u.user.is_controller if hasattr(u, 'user') else False), '/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class BoardingHouseList(ListView):
+    model = BoardingHouse
+    model = BoardingHouse
+    template_name = templates('boarding_list')
+    ordering = '-pk'
+    context_object_name = 'boardings'
+
+    @method_decorator(login_required(login_url='/accounts/login/'))
+    @method_decorator(
+        user_passes_test(lambda u: u.is_staff and (u.user.is_controller if hasattr(u, 'user') else False), '/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     'whitenoise',
     'robots',
+    'ckeditor',
 
     'api',
     'file_control',
@@ -136,8 +137,6 @@ EMAIL_HOST_USER = config('LAB_EMAIL')
 EMAIL_HOST_PASSWORD = config('LAB_PASSWORD')
 DEFAULT_FROM_EMAIL = config('LAB_EMAIL')
 
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -205,3 +204,11 @@ STATIC_ROOT = join(BASE_DIR, 'static/root')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 'full',
+        'width': 'full',
+    },
+}

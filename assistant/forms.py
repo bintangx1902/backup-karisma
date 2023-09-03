@@ -8,6 +8,7 @@ Recap = apps.get_model('presence', 'Recap')
 ClassName = apps.get_model('presence', 'ClassName')
 GenerateQRCode = apps.get_model('presence', 'GenerateQRCode')
 UserData = apps.get_model('presence', 'UserData')
+BoardingHouse = apps.get_model('presence', 'BoardingHouse')
 
 
 class ClassCreationForms(ModelForm):
@@ -39,4 +40,16 @@ class CreateClassForms(ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class BoardingHouseForms(ModelForm):
+    class Meta:
+        model = BoardingHouse
+        fields = ['name', 'spec', 'link']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'spec': forms.TextInput(attrs={'class': 'form-control w-100'}),
+            'link': forms.TextInput(attrs={'class': 'form-control'}),
         }

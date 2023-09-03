@@ -12,6 +12,8 @@ urlpatterns = [
     path('generate-token', GenerateTokenToResetPassword.as_view(), name='generate-token'),
     path('finder', FinderView.as_view(), name='finder'),
     path('download-today', DownloadTodayPresent.as_view(), name='today-present'),
+    path('upload-boarding-hosue', CreateBoardingHouse.as_view(), name='create-boarding'),
+    path('boarding-hosue-list', BoardingHouseList.as_view(), name='boarding-list'),
 
     path('my-class', MyClassList.as_view(), name='my-class-list'),
     path('my-class/<slug:link>/generate-qr', GenerateQRCodeView.as_view(), name='generate-qr'),

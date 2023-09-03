@@ -82,6 +82,24 @@
             </div>
         </div>
 
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pendataan Kost Terdekat</h5>
+                    <p class="card-text">Fitur ini digunakan untuk mendata kost terdekat dari kampus ITPLN</p>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{% url 'assist:create-boarding' %}" class="btn btn-primary col">Data Sekarang</a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'assist:boarding-list' %}" class="btn btn-primary col">Data Kost</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 {% endblock %}
