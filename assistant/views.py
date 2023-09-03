@@ -238,6 +238,10 @@ class CreateClass(CreateView):
         code_list = [c.unique_code for c in ClassName.objects.all()]
         code = check_slug(code, code_list, 10)
 
+        find = ClassName.objects.filter(link=link)
+        if find:
+            link = f"{link}-{code}"
+
         form.instance.name = name
         form.instance.link = link
         form.instance.unique_code = code
