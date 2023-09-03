@@ -54,6 +54,8 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     "crispy_tailwind",
+    'crispy_bootstrap4',
+
     'rest_framework',
     "whitenoise.runserver_nostatic",
     'whitenoise',
