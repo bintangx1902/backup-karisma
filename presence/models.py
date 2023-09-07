@@ -100,6 +100,7 @@ class BoardingHouse(models.Model):
     spec = RichTextField("Spesifikasi Kost")
     link = models.CharField("Link Google Maps : ", max_length=255)
     slug = models.SlugField(max_length=255)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} - Link G-Maps : {self.link}"

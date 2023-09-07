@@ -3,6 +3,7 @@ from django.urls import path
 
 app_name = 'presence'
 
+
 urlpatterns = [
     path('join-class', JoinClass.as_view(), name='join-class'),
     path('data-completions', DataComplement.as_view(), name='complete-data'),
@@ -15,5 +16,10 @@ urlpatterns = [
     path('class/<slug:link>/recaps', MyPresenceRecaps.as_view(), name='my-presence-recap'),
     path('class/<slug:link>/recaps/score', SeeMyScoreView.as_view(), name='my-score-recap'),
     path('dashboard', LandingView.as_view(), name='landing'),
+
+    path('about', about_us, name='about'),
+    path('merch', merchandise, name='merchandise'),
+    path('faq', faq, name='faq'),
+
     path('', landing, name='landing-no-login'),
 ]

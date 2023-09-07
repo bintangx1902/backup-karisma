@@ -1,0 +1,79 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load l10n %}
+{% load i18n %}
+
+{% block head %}
+<link href="{% static 'user/landing/css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="image-background" style="background-image: url({% static 'user/landing/images/web.png' %});">
+    <div class="container">
+        <div class="row">
+            <!-- About -->
+            <div class="col-md-8 mt-5 mb-5" style="margin: 0 auto;">
+                <div class="titel text-center">
+                    <h2 class="text-dark ms-0 fs-1"><b
+                            style="background-image: linear-gradient(#898,rgb(164,151,134)); text-transform: uppercase; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        KARISMA RENAISANS</b></h2>
+                    <div class="card bg-transparent border-light text-center">
+                        <p class="ms-3 me-3 mt-3 mb-3"><img src="{% static 'user/landing/images/kesatira/kesatira.png' %}" alt="">
+                        </p>
+                        <p class="ms-3 me-3 mt-3 mb-3 fs-4"><b style="color: rgb(124,84,59);">KARISMA</b> merupakan
+                            Pekan
+                            Penerimaan Mahasiswa, pengenalan kehidupan kampus untuk Mahasiswa
+                            Baru. Program Ini WAJIB diikuti oleh seluruh Mahasiswa Baru <b
+                                    style="color:rgb(124,84,59) ;">IT- PLN</b>. Dan kegiatan ini tujuannya untuk
+                            mempersiapkan para mahasiswa baru dalam proses transisi dari siswa menjadi mahasiswa.
+                            Membantu
+                            mempercepat proses adaptasi mahasiswa baru dengan Lingkungan kampus dan memberikan bekal
+                            untuk
+                            keberhasilannya menempuh pendidikan di <b style="color:rgb(124,84,59) ;"> Institut
+                                Teknologi PLN</b>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- end about -->
+            <!-- Visi -->
+            <div class="col-md-8 mt-5 mb-5" style="margin: 0 auto;">
+                <div class="titel text-center">
+                    <h2 style="background-image: linear-gradient(#898,rgb(164,151,134)); text-transform: uppercase; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        VISI</h2>
+                    <div class="card text-center bg-transparent border-light mt-3 ">
+                        <p class=" ms-3 me-3 mt-3 mb-3 fs-4 ">Menjadikan <b style="color:rgb(124,84,59) ;">KARISMA
+                            2023</b> sebagai langkah awal mengenal kehidupan kampus, mengetahui fungsi dan peran
+                            mahasiswa yang berperan aktif mendukung SDG's</p>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- end visi -->
+            <!-- misi -->
+            <div class="col-md-8 mt-5 mb-5 " style="margin: 0 auto;">
+                <div class="titel text-center">
+                    <h2 style="background-image: linear-gradient(#898,rgb(164,151,134)); text-transform: uppercase; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        MISI</h2>
+                    <div class="card text-start bg-transparent border-light  mt-3">
+                        <li class="ms-4 me-3  mb-2 fs-5  ">
+                            Membekali mahasiswa baru tentang lingkunagan kampus yang berkaitan dengan kehidupan,
+                            kegiatan
+                            pembelajaran dan juga kemahasiswaan
+                        </li>
+                        <li class="ms-4 me-3  mb-2 fs-5 ">Membekali mahasiswa baru tentang pengertian dan
+                            fungsi dari Tri Dharma Perguruan Tinggi
+                        </li>
+                        <li class="ms-4 me-3  mb-2 fs-5 ">Membekali mahasiswa baru tentang SDG's dan juga
+                            menerapkannya melalui Pengabdian Masyarakat
+                        </li>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -18,7 +18,19 @@ def templates(temp: str):
 
 
 def landing(request):
-    return render(request, templates('main_landing'))
+    return render(request, templates('main_landing'), {'path': '/'})
+
+
+def about_us(request):
+    return render(request, templates('about'), {'path': '/about'})
+
+
+def merchandise(request):
+    return render(request, templates('merch'), {'path': '/merch'})
+
+
+def faq(request):
+    return render(request, templates('faq'), {'path': '/faq'})
 
 
 class LandingView(View):
@@ -39,23 +51,23 @@ class JoinClass(View):
         code = self.request.POST['class_code']
         get_class = ClassName.objects.filter(unique_code=code)
         if not get_class:
-            messages.error(self.request, 'Kode Kelas Tidak Ditemukan')
+            messages.error(self.request, 'Kode Pleton Tidak Ditemukan')
             return redirect('presence:join-class')
         get_class = get_class[0]
         user = get_object_or_404(User, pk=self.request.user.pk)
         """ checking join is creator or not """
         if user == get_class.creator:
-            messages.info(self.request, "Kamu tidak bisa menjadi murid kelas sekaligus penanggung jawab!")
+            messages.info(self.request, "Kamu tidak bisa menjadi murid Pleton sekaligus penanggung jawab!")
             return redirect('presence:join-class')
 
         if get_class in user.stud.all():
-            messages.info(self.request, f"Kamu sudah masuk kedalam kelas '{get_class.name}'")
+            messages.info(self.request, f"Kamu sudah masuk kedalam Pleton '{get_class.name}'")
             return redirect('presence:join-class')
 
         get_class.students.add(self.request.user)
         get_class.save()
 
-        messages.info(self.request, f"Kamu sudah berhasil masuk kedalam kelas {get_class.name}")
+        messages.info(self.request, f"Kamu sudah berhasil masuk kedalam Pleton {get_class.name}")
         return redirect("presence:join-class")
 
     @method_decorator(login_required(login_url='/accounts/login/'))
@@ -304,7 +316,7 @@ class RequestPasswordReset(View):
     def post(self, *args, **kwargs):
         nim = get_object_or_404(UserData, nim=self.request.POST.get('NIM'))
         if check_request(self.model, nim.user):
-            return
+            return HttpResponseForbidden()
         instance = self.model(user=nim.user)
         instance.save()
         return redirect(settings.LOGIN_URL)

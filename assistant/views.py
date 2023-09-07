@@ -326,20 +326,20 @@ class JoinAssistantClas(View):
         code = self.request.POST.get('class_code')
         get_class = ClassName.objects.filter(unique_code=code)
         if not get_class:
-            messages.warning(self.request, 'Kelas dengan kode {} tidak terdaftar'.format(code))
+            messages.warning(self.request, 'Pleton dengan kode {} tidak terdaftar'.format(code))
             return redirect('assist:join-class')
         get_class = get_class[0]
         pr_list = [user for user in get_class.pr.all()]
         if get_class.creator == self.request.user:
-            messages.warning(self.request, "Kamu adalah PJ kelas ini maka tidak bisa sebgai asisten!")
+            messages.warning(self.request, "Kamu adalah PJ Pleton ini maka tidak bisa sebgai asisten!")
             return redirect('assist:join-class')
         if self.request.user in pr_list:
-            messages.info(self.request, 'Kamu sudah terdaftar sebagai assisten di kelas ini')
+            messages.info(self.request, 'Kamu sudah terdaftar sebagai assisten di Pleton ini')
             return redirect('assist:join-class')
         get_class.pr.add(self.request.user)
         get_class.save()
 
-        messages.info(self.request, f'Kamu sekarang terdaftar asisten kelas {get_class.name}')
+        messages.info(self.request, f'Kamu sekarang terdaftar asisten Pleton {get_class.name}')
         return redirect('assist:join-class')
 
     @method_decorator(login_required(login_url=settings.LOGIN_URL))
@@ -404,7 +404,7 @@ def recaps_csv(request, link, qr_code):
         response['Content-Disposition'] = f'attachment; filename=rekap_presensi_{generated_qr.stamp()}.csv'
         recaps = Recap.objects.filter(qr=generated_qr)
         writer = csv.writer(response)
-        writer.writerow(['no', 'nim', 'nama', 'kehadiran', 'kelas', 'time_stamp'])
+        writer.writerow(['no', 'nim', 'nama', 'kehadiran', 'Pleton', 'time_stamp'])
         for index, recap in enumerate(recaps):
             writer.writerow([int(index + 1), recap.user.user.nim, f"{recap.user.first_name} {recap.user.last_name}",
                              f"{recap.presence}", recap.qr.class_name, recap.stamp()])
@@ -439,7 +439,7 @@ class SetStudentAbsence(View):
         """ check if user is class student """
         if get_presence_qr.class_name not in user.user.stud.all():
             messages.info(self.request,
-                          f"{user.user.first_name} {user.user.last_name} - {nim} tidak terdaftar di kelas ini")
+                          f"{user.user.first_name} {user.user.last_name} - {nim} tidak terdaftar di Pleton ini")
             return redirect(reverse('assist:absence',
                                     kwargs={'link': self.kwargs['link'], 'qr_code': self.kwargs['qr_code']}))
         """ find if the student was recapitulated """
@@ -711,7 +711,7 @@ class DownloadScore(View):
         response = HttpResponse('')
         response['Content-Disposition'] = content
         writer = csv.writer(response)
-        writer.writerow(['No', 'Kelas', 'NIM', 'Nama Lengkap', 'Nilai', 'Konteks'])
+        writer.writerow(['No', 'Pleton', 'NIM', 'Nama Lengkap', 'Nilai', 'Konteks'])
         for idx, data in enumerate(to_download):
             writer.writerow([int(idx) + 1, to_download.first().class_name, data.user.user.nim,
                              f"{data.user.first_name} {data.user.last_name}", data.score, option])
@@ -738,7 +738,7 @@ class DownloadTodayPresent(View):
         generated_qr = GenerateQRCode.objects.filter(valid_until__date=today)
         response['Content-Disposition'] = f'attachment; filename=rekap_presensi_{generated_qr.first().stamp()}.csv'
         writer = csv.writer(response)
-        writer.writerow(['no', 'nim', 'nama', 'kehadiran', 'kelas', 'time_stamp'])
+        writer.writerow(['no', 'nim', 'nama', 'kehadiran', 'Pleton', 'time_stamp'])
         n = 1
         for model in generated_qr:
             for recap in model.qr_c.all():

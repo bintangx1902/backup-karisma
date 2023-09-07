@@ -1,0 +1,109 @@
+<!doctype html>
+
+{% load static %}
+{% load l10n %}
+{% load i18n %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Untree.co">
+    <link rel="shortcut icon" href="{% static 'user/landing/images/icon.png' %}">
+
+    <meta name="description" content=""/>
+    <meta name="keywords" content="bootstrap, bootstrap4"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'user/landing/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'user/landing/css/tiny-slider.css' %}" rel="stylesheet">
+    <title>Karisma</title>
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+
+<!-- Start Header/Navigation -->
+<nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-transparent position-relative w-100"
+     arial-label="Furni navigation bar" style="z-index: 1">
+
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img alt=""
+                                                       src="{% static 'user/landing/images/icon-removebg-preview.png' %}"
+                                                       alt=""
+                                                       width="60"></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+                aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFurni">
+            <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0 fs-6">
+                <li class="nav-item {% if path == '/' %}  active{% endif %}">
+                    <a class="nav-link text-lowercase" href="/">Home</a>
+                </li>
+                <li class="nav-item {% if path == '/about' %}  active{% endif %}">
+                    <a class="nav-link " href="{% url 'presence:about' %}">About us</a>
+                </li>
+                <li class="nav-item {% if path == '/merch' %}  active{% endif %}">
+                    <a class="nav-link" href="{% url 'presence:merchandise' %}">Merchandise</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="https://mamikos.com/cari/stt-pln-stt-pln-duri-kosambi-kota-jakarta-barat-daerah-khusus-ibukota-jakarta-indonesia/all/bulanan/0-15000000?rent=2&sort=price,-&price=10000-20000000&singgahsini=0">Info Kost</a>
+                </li>
+                <li class="nav-item {% if path == '/faq' %}  active{% endif %}">
+                    <a class="nav-link " href="{% url 'presence:faq' %}">FAQ</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'presence:landing' %}">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+
+{% block content %}
+{% endblock %}
+
+<section class="">
+
+    <!-- Footer -->
+    <footer class="text-center text-white" style="background-color:rgb(221,200,183)">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: CTA -->
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center text-dark">
+                    <span class="me-3">Register for free</span>
+                    <a type="button" href="/accounts/signup/" class="btn btn-outline-light btn-rounded">
+                        Sign up!
+                    </a>
+                </p>
+            </section>
+            <!-- Section: CTA -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3 text-dark" style="background-color: rgb(221,200,183)">
+            © 2023 Copyright:
+            <a class="text-dark text-decoration-none" href="">KARISMA RENAISANS</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</section>
+
+
+<script src="{% static 'user/landing/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'user/landing/js/tiny-slider.js' %}"></script>
+<script src="{% static 'user/landing/js/custom.js' %}"></script>
+</body>
+
+</html>

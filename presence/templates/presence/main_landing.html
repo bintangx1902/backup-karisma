@@ -1,10 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends '_base.html' %}
 
-</body>
-</html>
+{% load static %}
+{% load l10n %}
+{% load i18n %}
+
+{% block head %}
+<link href="{% static 'user/landing/css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="background-container">
+        <img alt="" src="{% static 'user/landing/images/hero.png' %}" class="img-fluid" alt="Hero Image">
+        <div class="container">
+        </div>
+    </div>
+
+</section>
+<!-- End Hero Section -->
+
+
+<div class="image-background" style="background-image: url({% static 'user/landing/images/web.png' %});">
+    <!-- Start Blog Section -->
+    <div class="blog-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <h1 class="section-title"
+                        style="background-image: linear-gradient(#898,rgb(164,151,134)); text-transform: uppercase; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <b>BERITA</b></h1>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+                    <div class="post-entry">
+                        <a href="https://drive.google.com/drive/folders/1-ENGwCLAjPGVenYg15xLR5wSuSSpn53G"
+                           class="post-thumbnail"><img alt="" src="{% static 'user/landing/images/TWIBBON.png' %}" alt="Image"
+                                                       class="img-fluid"></a>
+                        <div class="post-content-entry">
+                            <h3><a href="https://drive.google.com/drive/folders/1-ENGwCLAjPGVenYg15xLR5wSuSSpn53G">TWIBON</a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+                    <div class="post-entry">
+                        <a href="#" class="post-thumbnail"><img alt="" src="{% static 'user/landing/images/absensi.png' %}" alt="Image"
+                                                                class="img-fluid"></a>
+                        <div class="post-content-entry">
+                            <h3><a href="#">ABSENSI</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+                    <div class="post-entry">
+                        <a href="faq.html" class="post-thumbnail"><img alt="" src="{% static 'user/landing/images/FAQ.png' %}" alt="Image"
+                                                                       class="img-fluid"></a>
+                        <div class="post-content-entry">
+                            <h3><a href="faq.html">FAQ</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Blog Section -->
+
+
+    <!-- Start Product Section -->
+    <div class="product-section">
+        <div class="container">
+            <div class="row">
+
+                <!-- Start Column 1 -->
+                <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+                    <h2 class="mb-4 section-title"
+                        style="background-image: linear-gradient(#898,rgb(164,151,134)); text-transform: uppercase; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <b>MERCHANDISE</b></h2>
+                    <h5 class="mb-4" style="color: black;">KARISMA RENAISANS 2023 </h5>
+
+                </div>
+                <!-- End Column 1 -->
+
+                <!-- Start Column 2 -->
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="product-item">
+                        <img alt="" src="{% static 'user/landing/images/MERCHENDISE/hoodie_hitam.png' %}" class="img-fluid product-thumbnail">
+                        <h3 class="product-title">HOODIE BLACK</h3>
+                        <strong class="product-price">IDR 185.000</strong>
+                    </a>
+                </div>
+                <!-- End Column 2 -->
+
+                <!-- Start Column 3 -->
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="product-item">
+                        <img alt="" src="{% static 'user/landing/images/MERCHENDISE/kaos_putih-removebg-preview.png' %}"
+                             class="img-fluid product-thumbnail">
+                        <h3 class="product-title">T-SHIRT</h3>
+                        <strong class="product-price">IDR 100.000</strong>
+
+                    </a>
+                </div>
+                <!-- End Column 3 -->
+
+                <!-- Start Column 4 -->
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="product-item">
+                        <img alt="" src="{% static 'user/landing/images/MERCHENDISE/varsity-removebg-preview.png' %}"
+                             class="img-fluid product-thumbnail">
+                        <h3 class="product-title">VARSITY</h3>
+                        <strong class="product-price">IDR 250.000</strong>
+                    </a>
+                </div>
+                <!-- End Column 4 -->
+
+            </div>
+        </div>
+    </div>
+    <!-- End Product Section -->
+</div>
+{% endblock %}
