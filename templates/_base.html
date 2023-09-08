@@ -19,7 +19,21 @@
     <link href="{% static 'user/landing/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="{% static 'user/landing/css/tiny-slider.css' %}" rel="stylesheet">
-    <title>Karisma</title>
+    <!-- google analytic -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9658TXYYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-C9658TXYYW');
+    </script>
+    <title>{% block title %}{% endblock %}KARISMA</title>
     {% block head %}
     {% endblock %}
 </head>
@@ -31,7 +45,7 @@
      arial-label="Furni navigation bar" style="z-index: 1">
 
     <div class="container">
-        <a class="navbar-brand" href="index.html"><img alt=""
+        <a class="navbar-brand" href="/"><img alt=""
                                                        src="{% static 'user/landing/images/icon-removebg-preview.png' %}"
                                                        alt=""
                                                        width="60"></a>
@@ -53,7 +67,9 @@
                     <a class="nav-link" href="{% url 'presence:merchandise' %}">Merchandise</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="https://mamikos.com/cari/stt-pln-stt-pln-duri-kosambi-kota-jakarta-barat-daerah-khusus-ibukota-jakarta-indonesia/all/bulanan/0-15000000?rent=2&sort=price,-&price=10000-20000000&singgahsini=0">Info Kost</a>
+                    <a class="nav-link"
+                       href="https://mamikos.com/cari/stt-pln-stt-pln-duri-kosambi-kota-jakarta-barat-daerah-khusus-ibukota-jakarta-indonesia/all/bulanan/0-15000000?rent=2&sort=price,-&price=10000-20000000&singgahsini=0">Info
+                        Kost</a>
                 </li>
                 <li class="nav-item {% if path == '/faq' %}  active{% endif %}">
                     <a class="nav-link " href="{% url 'presence:faq' %}">FAQ</a>

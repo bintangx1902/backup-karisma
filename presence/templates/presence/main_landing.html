@@ -48,20 +48,20 @@
 
                 <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                     <div class="post-entry">
-                        <a href="#" class="post-thumbnail"><img alt="" src="{% static 'user/landing/images/absensi.png' %}" alt="Image"
+                        <a href="/dashboard" class="post-thumbnail"><img alt="" src="{% static 'user/landing/images/absensi.png' %}" alt="Image"
                                                                 class="img-fluid"></a>
                         <div class="post-content-entry">
-                            <h3><a href="#">ABSENSI</a></h3>
+                            <h3><a href="/dashboard">ABSENSI</a></h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                     <div class="post-entry">
-                        <a href="faq.html" class="post-thumbnail"><img alt="" src="{% static 'user/landing/images/FAQ.png' %}" alt="Image"
+                        <a href="{% url 'presence:faq' %}" class="post-thumbnail"><img alt="" src="{% static 'user/landing/images/FAQ.png' %}" alt="Image"
                                                                        class="img-fluid"></a>
                         <div class="post-content-entry">
-                            <h3><a href="faq.html">FAQ</a></h3>
+                            <h3><a href="{% url 'presence:faq' %}">FAQ</a></h3>
                         </div>
                     </div>
                 </div>
