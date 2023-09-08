@@ -9,6 +9,19 @@
 		<link rel="stylesheet" href="{% static 'user/midone/css/app.css' %}" />
         <link rel="stylesheet" href="{% static 'user/css/login_template.css'  %}">
         <title>Renaissance - {% block head_title %}{% endblock %}</title>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9658TXYYW"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'G-C9658TXYYW');
+        </script>
         {% block extra_head %}
         {% endblock %}
 	</head>
